@@ -1,18 +1,18 @@
-outputs/result.txt: outputs/isles.dat outputs/abyss.dat outputs/last.dat
-	python testzipf.py outputs/abyss.dat outputs/isles.dat outputs/last.dat > outputs/results.txt
+outputs/results.txt: outputs/isles.dat outputs/abyss.dat outputs/last.dat
+	python testzipf.py $^ > $@
 
 .PHONY: .dats
 dats: outputs/isles.dat outputs/abyss.dat outputs/last.dat
 
 # Count words.
 outputs/isles.dat: books/isles.txt
-	python countwords.py books/isles.txt outputs/isles.dat
+	python countwords.py $< $@
 
 outputs/abyss.dat : books/abyss.txt
-	python countwords.py books/abyss.txt outputs/abyss.dat
+	python countwords.py $< $@
 
 outputs/last.dat : books/last.txt
-	python countwords.py books/last.txt outputs/last.dat
+	python countwords.py $< $@
 
 .PHONY: clean
 clean:
